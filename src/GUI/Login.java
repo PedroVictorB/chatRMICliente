@@ -6,6 +6,9 @@
 
 package GUI;
 
+import javax.swing.JOptionPane;
+import negocio.actions;
+
 /**
  *
  * @author Pedro
@@ -116,7 +119,18 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        
+        if(jTextField1.getText().isEmpty() || jPasswordField1.getPassword().length == 0){
+            JOptionPane.showMessageDialog(null, "Digite login e senha!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+        }else{
+            String login = jTextField1.getText();
+            String senha = new String(jPasswordField1.getPassword());
+            if(new actions().login(login, senha)){
+                System.out.println("LOGADO!");
+                //principal
+            }else{
+                JOptionPane.showMessageDialog(null, "Login ou senha incorreto!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**

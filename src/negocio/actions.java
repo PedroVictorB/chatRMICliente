@@ -39,7 +39,19 @@ public class actions {
     }
     
     public boolean login(String login, String senha){
-        return true;
+        try {
+            com = (Comandos) Naming.lookup("//" + "192.168.0.14" + "/host");
+            return com.Login(login, senha);
+        } catch (NotBoundException ex) {
+            Logger.getLogger(actions.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(actions.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } catch (RemoteException ex) {
+            Logger.getLogger(actions.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
     }
     
 }
