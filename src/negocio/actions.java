@@ -7,7 +7,13 @@
 package negocio;
 
 import Conn.Comandos;
+import GUI.Cadastro;
+import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,15 +21,25 @@ import java.rmi.Naming;
  */
 public class actions {
     Comandos com;
-    public void cadastrar(){
+    public boolean cadastrar(String nome, String login, String senha){
         try {
-            //System.setSecurityManager(new RMISecurityManager());
-            com = (Comandos) Naming.lookup("//" + "192.168.0.14" + "/host");
-            System.out.println("Mensagem no servidor RMI de: " + com.Login("pedro","senha123"));
-        } catch (Exception e) {
-            System.out.println("HelloClient exception: " + e.getMessage());
-            e.printStackTrace();
-        }
+                com = (Comandos) Naming.lookup("//" + "192.168.0.14" + "/host");
+                System.out.println(""+nome+" "+login+" "+senha);
+                return com.Cadastrar(nome, login, senha);
+            } catch (NotBoundException ex) {
+                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+                return false;
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+                return false;
+            } catch (RemoteException ex) {
+                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+                return false;
+            }
+    }
+    
+    public boolean login(String login, String senha){
+        return true;
     }
     
 }

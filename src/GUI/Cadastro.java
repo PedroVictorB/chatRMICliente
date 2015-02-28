@@ -6,13 +6,23 @@
 
 package GUI;
 
+import Conn.Comandos;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import negocio.actions;
 
 /**
  *
  * @author Pedro
  */
 public class Cadastro extends javax.swing.JFrame {
+    
+    Comandos msg;
 
     /**
      * Creates new form Cadastro
@@ -104,10 +114,16 @@ public class Cadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        if(jTextField1.getText() == null || jPasswordField1.getPassword() == null){
-            JOptionPane.showMessageDialog(null, "Digite login e senha!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+        if(jTextField1.getText().isEmpty() || jPasswordField1.getPassword().length == 0 || jTextField3.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Digite login, senha e nome!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
         }else{
-            
+            actions a = new actions();
+            if(a.cadastrar(jTextField3.getText(), jTextField1.getText(), new String(jPasswordField1.getPassword()))){
+                JOptionPane.showMessageDialog(null, "Cadastrado!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "Login em uso, tente outro!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jButton1MouseClicked
 

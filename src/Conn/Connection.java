@@ -21,7 +21,7 @@ public class Connection{
         try {
             //System.setSecurityManager(new RMISecurityManager());
             msg = (Comandos) Naming.lookup("//" + "192.168.0.14" + "/host");
-            System.out.println("Mensagem no servidor RMI de: " + msg.Login("pedro","senha123"));
+            System.out.println("Mensagem no servidor RMI de: " + msg.Login("pedro", "senha123"));
         } catch (Exception e) {
             System.out.println("HelloClient exception: " + e.getMessage());
             e.printStackTrace();
