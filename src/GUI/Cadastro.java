@@ -117,12 +117,22 @@ public class Cadastro extends javax.swing.JFrame {
         if(jTextField1.getText().isEmpty() || jPasswordField1.getPassword().length == 0 || jTextField3.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Digite login, senha e nome!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
         }else{
-            actions a = new actions();
-            if(a.cadastrar(jTextField3.getText(), jTextField1.getText(), new String(jPasswordField1.getPassword()))){
-                JOptionPane.showMessageDialog(null, "Cadastrado!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
-                this.dispose();
-            }else{
-                JOptionPane.showMessageDialog(null, "Login em uso, tente outro!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+            try {
+                if(new actions().cadastrar(jTextField3.getText(), jTextField1.getText(), new String(jPasswordField1.getPassword()))){
+                    JOptionPane.showMessageDialog(null, "Cadastrado!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+                    this.dispose();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Login em uso, tente outro!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+                }
+            } catch (NotBoundException ex) {
+                JOptionPane.showMessageDialog(null, "Nome RMI não achado!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+                System.out.println(ex.getMessage());
+            } catch (MalformedURLException ex) {
+                JOptionPane.showMessageDialog(null, "URL RMI errada!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+                System.out.println(ex.getMessage());
+            } catch (RemoteException ex) {
+                JOptionPane.showMessageDialog(null, "Erro na execução do método remoto!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+                System.out.println(ex.getMessage());
             }
         }
     }//GEN-LAST:event_jButton1MouseClicked

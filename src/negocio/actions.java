@@ -7,13 +7,17 @@
 package negocio;
 
 import Conn.Comandos;
+import Entidades.UsuarioLogado;
+import Entidades.teste;
 import GUI.Cadastro;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 
 /**
  *
@@ -21,37 +25,21 @@ import java.util.logging.Logger;
  */
 public class actions {
     Comandos com;
-    public boolean cadastrar(String nome, String login, String senha){
-        try {
+    public boolean cadastrar(String nome, String login, String senha) throws NotBoundException, MalformedURLException, RemoteException{
                 com = (Comandos) Naming.lookup("//" + "192.168.0.14" + "/host");
                 System.out.println(""+nome+" "+login+" "+senha);
                 return com.Cadastrar(nome, login, senha);
-            } catch (NotBoundException ex) {
-                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-                return false;
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-                return false;
-            } catch (RemoteException ex) {
-                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
-                return false;
-            }
     }
     
-    public boolean login(String login, String senha){
-        try {
+    public boolean login(String login, String senha) throws NotBoundException, MalformedURLException, RemoteException{
             com = (Comandos) Naming.lookup("//" + "192.168.0.14" + "/host");
             return com.Login(login, senha);
-        } catch (NotBoundException ex) {
-            Logger.getLogger(actions.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(actions.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        } catch (RemoteException ex) {
-            Logger.getLogger(actions.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
+    }
+    
+    public ArrayList<UsuarioLogado> usuariosLogados() throws NotBoundException, MalformedURLException, RemoteException{
+            com = (Comandos) Naming.lookup("//" + "192.168.0.14" + "/host");
+            teste u = com.ListaDeClientesConectados();
+            return u.lista;
     }
     
 }
