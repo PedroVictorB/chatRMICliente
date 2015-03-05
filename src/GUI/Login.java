@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package GUI;
 
 import com.sun.glass.events.KeyEvent;
@@ -142,16 +141,16 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        if(jTextField1.getText().isEmpty() || jPasswordField1.getPassword().length == 0){
+        if (jTextField1.getText().isEmpty() || jPasswordField1.getPassword().length == 0) {
             JOptionPane.showMessageDialog(null, "Digite login e senha!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
-        }else{
+        } else {
             String login = jTextField1.getText();
             String senha = new String(jPasswordField1.getPassword());
             try {
-                if(new actions().login(login, senha)){
+                if (new actions().login(login, senha)) {
                     System.out.println("LOGADO!");
                     //principal
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "Login ou senha incorreto!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
                 }
             } catch (NotBoundException ex) {
@@ -168,79 +167,63 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        if(jTextField1.getText().isEmpty() || jPasswordField1.getPassword().length == 0){
-            JOptionPane.showMessageDialog(null, "Digite login e senha!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
-        }else{
-            String login = jTextField1.getText();
-            String senha = new String(jPasswordField1.getPassword());
-            try {
-                if(new actions().login(login, senha)){
-                    System.out.println("LOGADO!");
-                    //principal
-                }else{
-                    JOptionPane.showMessageDialog(null, "Login ou senha incorreto!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
-                }
-            } catch (NotBoundException ex) {
-                JOptionPane.showMessageDialog(null, "Nome RMI não achado!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
-                System.out.println(ex.getMessage());
-            } catch (MalformedURLException ex) {
-                JOptionPane.showMessageDialog(null, "URL RMI errada!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
-                System.out.println(ex.getMessage());
-            } catch (RemoteException ex) {
-                JOptionPane.showMessageDialog(null, "Erro na execução do método remoto!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
-                System.out.println(ex.getMessage());
-            }
-        }
+
     }//GEN-LAST:event_formKeyPressed
 
     private void jPasswordField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyPressed
-        if(jTextField1.getText().isEmpty() || jPasswordField1.getPassword().length == 0){
-            JOptionPane.showMessageDialog(null, "Digite login e senha!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
-        }else{
-            String login = jTextField1.getText();
-            String senha = new String(jPasswordField1.getPassword());
-            try {
-                if(new actions().login(login, senha)){
-                    System.out.println("LOGADO!");
-                    //principal
-                }else{
-                    JOptionPane.showMessageDialog(null, "Login ou senha incorreto!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (jTextField1.getText().isEmpty() || jPasswordField1.getPassword().length == 0) {
+                JOptionPane.showMessageDialog(null, "Digite login e senha!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+            } else {
+
+                String login = jTextField1.getText();
+                String senha = new String(jPasswordField1.getPassword());
+                try {
+                    if (new actions().login(login, senha)) {
+                        System.out.println("LOGADO!");
+                        //principal
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Login ou senha incorreto!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+                    }
+                } catch (NotBoundException ex) {
+                    JOptionPane.showMessageDialog(null, "Nome RMI não achado!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+                    System.out.println(ex.getMessage());
+                } catch (MalformedURLException ex) {
+                    JOptionPane.showMessageDialog(null, "URL RMI errada!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+                    System.out.println(ex.getMessage());
+                } catch (RemoteException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro na execução do método remoto!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+                    System.out.println(ex.getMessage());
                 }
-            } catch (NotBoundException ex) {
-                JOptionPane.showMessageDialog(null, "Nome RMI não achado!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
-                System.out.println(ex.getMessage());
-            } catch (MalformedURLException ex) {
-                JOptionPane.showMessageDialog(null, "URL RMI errada!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
-                System.out.println(ex.getMessage());
-            } catch (RemoteException ex) {
-                JOptionPane.showMessageDialog(null, "Erro na execução do método remoto!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
-                System.out.println(ex.getMessage());
             }
         }
     }//GEN-LAST:event_jPasswordField1KeyPressed
 
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
-        if(jTextField1.getText().isEmpty() || jPasswordField1.getPassword().length == 0){
-            JOptionPane.showMessageDialog(null, "Digite login e senha!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
-        }else{
-            String login = jTextField1.getText();
-            String senha = new String(jPasswordField1.getPassword());
-            try {
-                if(new actions().login(login, senha)){
-                    System.out.println("LOGADO!");
-                    //principal
-                }else{
-                    JOptionPane.showMessageDialog(null, "Login ou senha incorreto!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (jTextField1.getText().isEmpty() || jPasswordField1.getPassword().length == 0) {
+                JOptionPane.showMessageDialog(null, "Digite login e senha!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+            } else {
+
+                String login = jTextField1.getText();
+                String senha = new String(jPasswordField1.getPassword());
+                try {
+                    if (new actions().login(login, senha)) {
+                        System.out.println("LOGADO!");
+                        //principal
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Login ou senha incorreto!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+                    }
+                } catch (NotBoundException ex) {
+                    JOptionPane.showMessageDialog(null, "Nome RMI não achado!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+                    System.out.println(ex.getMessage());
+                } catch (MalformedURLException ex) {
+                    JOptionPane.showMessageDialog(null, "URL RMI errada!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+                    System.out.println(ex.getMessage());
+                } catch (RemoteException ex) {
+                    JOptionPane.showMessageDialog(null, "Erro na execução do método remoto!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+                    System.out.println(ex.getMessage());
                 }
-            } catch (NotBoundException ex) {
-                JOptionPane.showMessageDialog(null, "Nome RMI não achado!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
-                System.out.println(ex.getMessage());
-            } catch (MalformedURLException ex) {
-                JOptionPane.showMessageDialog(null, "URL RMI errada!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
-                System.out.println(ex.getMessage());
-            } catch (RemoteException ex) {
-                JOptionPane.showMessageDialog(null, "Erro na execução do método remoto!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
-                System.out.println(ex.getMessage());
             }
         }
     }//GEN-LAST:event_jTextField1KeyPressed
