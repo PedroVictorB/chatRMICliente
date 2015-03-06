@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.server.ServerNotActiveException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +27,7 @@ import negocio.actions;
  */
 public class Principal extends javax.swing.JFrame {
 
+    public Chat chat;
     Timer timer;
 
     /**
@@ -58,7 +60,7 @@ public class Principal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -143,7 +145,9 @@ public class Principal extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         int linha = jTable1.getSelectedRow();
         if (linha != -1) {
-            System.out.println("ID: " + Integer.parseInt(jTable1.getValueAt(linha, 0).toString()) + "Nome: " + jTable1.getValueAt(linha, 1).toString());
+            //System.out.println("ID: " + Integer.parseInt(jTable1.getValueAt(linha, 0).toString()) + "Nome: " + jTable1.getValueAt(linha, 1).toString());
+            chat = new Chat();
+            chat.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um usuário da lista!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
         }
@@ -179,8 +183,8 @@ public class Principal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Principal p = new Principal();
-                p.setVisible(true);
+                //Principal p = new Principal();
+                //p.setVisible(true);
             }
         });
     }

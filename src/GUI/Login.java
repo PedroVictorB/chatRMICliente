@@ -9,6 +9,7 @@ import com.sun.glass.events.KeyEvent;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.server.ServerNotActiveException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -181,7 +182,8 @@ public class Login extends javax.swing.JFrame {
                 try {
                     if (new actions().login(login, senha)) {
                         System.out.println("LOGADO!");
-                        //principal
+                        new Principal().setVisible(true);
+                        this.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, "Login ou senha incorreto!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
                     }

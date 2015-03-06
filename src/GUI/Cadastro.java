@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package GUI;
 
 import Conn.Comandos;
@@ -11,6 +10,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.server.ServerNotActiveException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -21,7 +21,7 @@ import negocio.actions;
  * @author Pedro
  */
 public class Cadastro extends javax.swing.JFrame {
-    
+
     Comandos msg;
 
     /**
@@ -114,14 +114,14 @@ public class Cadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        if(jTextField1.getText().isEmpty() || jPasswordField1.getPassword().length == 0 || jTextField3.getText().isEmpty()){
+        if (jTextField1.getText().isEmpty() || jPasswordField1.getPassword().length == 0 || jTextField3.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite login, senha e nome!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
-        }else{
+        } else {
             try {
-                if(new actions().cadastrar(jTextField3.getText(), jTextField1.getText(), new String(jPasswordField1.getPassword()))){
+                if (new actions().cadastrar(jTextField3.getText(), jTextField1.getText(), new String(jPasswordField1.getPassword()))) {
                     JOptionPane.showMessageDialog(null, "Cadastrado!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
                     this.dispose();
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "Login em uso, tente outro!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
                 }
             } catch (NotBoundException ex) {

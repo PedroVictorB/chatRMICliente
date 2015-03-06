@@ -32,7 +32,7 @@ public class actions {
     }
     
     public boolean login(String login, String senha) throws NotBoundException, MalformedURLException, RemoteException{
-            com = (Comandos) Naming.lookup("//" + "192.168.0.14" + "/host");
+            com = (Comandos) Naming.lookup("//" + "10.5.18.132" + "/host");
             return com.Login(login, senha);
     }
     
