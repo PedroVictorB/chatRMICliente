@@ -32,7 +32,7 @@ public class actions {
     }
     
     public boolean login(String login, String senha) throws NotBoundException, MalformedURLException, RemoteException{
-            com = (Comandos) Naming.lookup("//" + "10.5.18.132" + "/host");
+            com = (Comandos) Naming.lookup("//" + "192.168.0.14" + "/host");
             return com.Login(login, senha);
     }
     
@@ -40,6 +40,16 @@ public class actions {
             com = (Comandos) Naming.lookup("//" + "192.168.0.14" + "/host");
             teste u = com.ListaDeClientesConectados();
             return u.lista;
+    }
+    
+    public void enviarMensagem(String msg) throws NotBoundException, MalformedURLException, RemoteException{
+        com = (Comandos) Naming.lookup("//" + "192.168.0.14" + "/host");
+        com.SendMessage(msg);
+    }
+    
+    public void deslogar(String login) throws NotBoundException, MalformedURLException, RemoteException{
+        com = (Comandos) Naming.lookup("//" + "192.168.0.14" + "/host");
+        com.Deslogar(login); 
     }
     
 }

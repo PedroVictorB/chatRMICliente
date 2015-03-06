@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Conn.server;
 import Entidades.UsuarioLogado;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,6 +30,7 @@ public class Principal extends javax.swing.JFrame {
 
     public Chat chat;
     Timer timer;
+    public String login = "";
 
     /**
      * Creates new form Principal
@@ -143,13 +145,21 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        try {
+            server s = new server();
+            s.chatWindow();
+            s.login = this.login;
+            s.startCliente();
+        } catch (RemoteException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         int linha = jTable1.getSelectedRow();
         if (linha != -1) {
             //System.out.println("ID: " + Integer.parseInt(jTable1.getValueAt(linha, 0).toString()) + "Nome: " + jTable1.getValueAt(linha, 1).toString());
-            chat = new Chat();
-            chat.setVisible(true);
+            //chat = new Chat();
+            //chat.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(null, "Selecione um usuário da lista!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "Selecione um usuário da lista!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
         }
     }//GEN-LAST:event_jButton1MouseClicked
 

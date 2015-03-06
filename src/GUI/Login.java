@@ -78,6 +78,11 @@ public class Login extends javax.swing.JFrame {
         });
 
         jButton2.setText("Cadastro");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jLabel2.setText("Não tem login?Cadastre-se!! -->");
 
@@ -150,7 +155,10 @@ public class Login extends javax.swing.JFrame {
             try {
                 if (new actions().login(login, senha)) {
                     System.out.println("LOGADO!");
-                    //principal
+                    Principal p = new Principal();
+                    p.setVisible(true);
+                    p.login = login;
+                    this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "Login ou senha incorreto!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
                 }
@@ -182,7 +190,9 @@ public class Login extends javax.swing.JFrame {
                 try {
                     if (new actions().login(login, senha)) {
                         System.out.println("LOGADO!");
-                        new Principal().setVisible(true);
+                        Principal p = new Principal();
+                        p.setVisible(true);
+                        p.login = login;
                         this.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, "Login ou senha incorreto!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
@@ -212,7 +222,10 @@ public class Login extends javax.swing.JFrame {
                 try {
                     if (new actions().login(login, senha)) {
                         System.out.println("LOGADO!");
-                        //principal
+                        Principal p = new Principal();
+                        p.setVisible(true);
+                        p.login = login;
+                        this.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, "Login ou senha incorreto!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
                     }
@@ -229,6 +242,10 @@ public class Login extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jTextField1KeyPressed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        new Cadastro().setVisible(true);
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments

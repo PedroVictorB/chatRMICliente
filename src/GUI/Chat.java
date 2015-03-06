@@ -6,11 +6,30 @@
 
 package GUI;
 
+import java.net.MalformedURLException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import negocio.actions;
+
 /**
  *
  * @author Pedro
  */
 public class Chat extends javax.swing.JFrame {
+    
+    private static Chat myInstance;
+    
+    public static Chat getInstance() {
+        if (myInstance == null){
+            myInstance = new Chat();
+        } 
+        return myInstance;
+    }
+    
+    public String texto = "";
+    public String login = "";
 
     /**
      * Creates new form chat
@@ -35,6 +54,11 @@ public class Chat extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -45,6 +69,11 @@ public class Chat extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTextArea2);
 
         jButton1.setText("Enviar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,6 +103,32 @@ public class Chat extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        try {
+            System.out.println(""+login);
+            new actions().enviarMensagem(jTextArea2.getText());
+            
+        } catch (NotBoundException ex) {
+            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RemoteException ex) {
+            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        try {
+            new actions().deslogar("");
+        } catch (NotBoundException ex) {
+            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RemoteException ex) {
+            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -118,5 +173,8 @@ public class Chat extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea2;
     // End of variables declaration//GEN-END:variables
 
-    
+    public void addTexto(String msg){
+        texto += msg;
+        jTextArea1.setText(msg);
+    }
 }
