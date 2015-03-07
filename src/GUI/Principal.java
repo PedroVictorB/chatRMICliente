@@ -28,9 +28,8 @@ import negocio.actions;
  */
 public class Principal extends javax.swing.JFrame {
 
-    public Chat chat;
-    Timer timer;
-    public String login = "";
+    //private Timer timer = null;
+    public UsuarioLogado usuario;
 
     /**
      * Creates new form Principal
@@ -148,18 +147,14 @@ public class Principal extends javax.swing.JFrame {
         try {
             server s = new server();
             s.chatWindow();
-            s.login = this.login;
+            Chat c = Chat.getInstance();
+            c.login = usuario.getLogin();
+            c.nome = usuario.getNome();
+            c.id = usuario.getId();
+            s.login = usuario.getLogin();
             s.startCliente();
         } catch (RemoteException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        int linha = jTable1.getSelectedRow();
-        if (linha != -1) {
-            //System.out.println("ID: " + Integer.parseInt(jTable1.getValueAt(linha, 0).toString()) + "Nome: " + jTable1.getValueAt(linha, 1).toString());
-            //chat = new Chat();
-            //chat.setVisible(true);
-        } else {
-            //JOptionPane.showMessageDialog(null, "Selecione um usuário da lista!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -208,8 +203,7 @@ public class Principal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void atualizarTabela() {
-        //JOptionPane.showMessageDialog(null, "Cadastrado!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
-        DefaultTableModel model = new DefaultTableModel();
+        DefaultTableModel model;
         model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         ArrayList<UsuarioLogado> lista = null;
@@ -230,6 +224,20 @@ public class Principal extends javax.swing.JFrame {
             System.out.println("" + u.getNome());
         }
         jTable1.setModel(model);
+    }
+
+    /**
+     * @return the usuario
+     */
+    public UsuarioLogado getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(UsuarioLogado usuario) {
+        this.usuario = usuario;
     }
 
 }

@@ -6,6 +6,8 @@
 
 package GUI;
 
+import Entidades.UsuarioLogado;
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -17,11 +19,11 @@ import negocio.actions;
  *
  * @author Pedro
  */
-public class Chat extends javax.swing.JFrame {
+public class Chat extends javax.swing.JFrame implements Serializable{
     
     private static Chat myInstance;
     
-    public static Chat getInstance() {
+    public static synchronized Chat getInstance() {
         if (myInstance == null){
             myInstance = new Chat();
         } 
@@ -30,6 +32,8 @@ public class Chat extends javax.swing.JFrame {
     
     public String texto = "";
     public String login = "";
+    public String nome = "";
+    public int id;
 
     /**
      * Creates new form chat
@@ -106,8 +110,7 @@ public class Chat extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         try {
-            System.out.println(""+login);
-            new actions().enviarMensagem(jTextArea2.getText());
+            new actions().enviarMensagem("[" + id + "] " + nome + " : "+jTextArea2.getText());
             
         } catch (NotBoundException ex) {
             Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
@@ -120,7 +123,7 @@ public class Chat extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         try {
-            new actions().deslogar("");
+            new actions().deslogar(login);
         } catch (NotBoundException ex) {
             Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MalformedURLException ex) {
@@ -174,7 +177,8 @@ public class Chat extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void addTexto(String msg){
-        texto += msg;
-        jTextArea1.setText(msg);
+        texto += msg + "\n";
+        jTextArea1.setText(texto);
     }
+    
 }

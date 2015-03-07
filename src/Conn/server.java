@@ -6,6 +6,7 @@
 
 package Conn;
 
+import Entidades.UsuarioLogado;
 import GUI.Chat;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -19,20 +20,26 @@ import java.rmi.server.UnicastRemoteObject;
 public class server extends UnicastRemoteObject implements ReceiveMessage{
     server obj;
     Registry r;
-    public String login = "";
     Chat chat;
+    
+    public String login = "";
     
     public server() throws RemoteException{
         
     } 
     
     public void startCliente(){
-        try { // Creates an object of the HelloServer class. 
-            obj = new server(); // Bind this object instance to the name "HelloServer". 
+        try {
+            System.out.println(""+login);
+            obj = new server(); 
             r = LocateRegistry.getRegistry();
+            if(LocateRegistry.getRegistry() == null){
+                r = LocateRegistry.createRegistry(1099);
+            }else{
+                r = LocateRegistry.getRegistry();
+            }
             r.bind(login, obj);
-            //Naming.rebind("sendMessage", obj);
-            System.out.println("Ligado no registro / "+login);
+            System.out.println("Ligado no registro");
         } catch (Exception ex) {
             System.out.println("error: " + ex.getMessage());
             ex.printStackTrace();
@@ -42,14 +49,11 @@ public class server extends UnicastRemoteObject implements ReceiveMessage{
     @Override
     public void mensagem(String msg) throws RemoteException {
         chat = Chat.getInstance();
-        chat.login = this.login;
-        System.out.println(""+msg);
         chat.addTexto(msg);
     }
     
     public void chatWindow(){
         chat = Chat.getInstance();
-        chat.login = this.login;
         chat.setVisible(true);
     }
 }
