@@ -61,7 +61,12 @@ public class Principal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -158,6 +163,21 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        try {
+            new actions().deslogar(usuario.getLogin());
+        } catch (NotBoundException ex) {
+            JOptionPane.showMessageDialog(null, "Nome RMI não achado!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+            System.out.println(ex.getMessage());
+        } catch (MalformedURLException ex) {
+            JOptionPane.showMessageDialog(null, "URL RMI errada!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+            System.out.println(ex.getMessage());
+        } catch (RemoteException ex) {
+            JOptionPane.showMessageDialog(null, "Erro na execução do método remoto!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+            System.out.println(ex.getMessage());
+        }
+    }//GEN-LAST:event_formWindowClosing
+
     /**
      * @param args the command line arguments
      */
@@ -221,7 +241,7 @@ public class Principal extends javax.swing.JFrame {
         }
         for (UsuarioLogado u : lista) {
             model.addRow(new Object[]{u.getId(), u.getNome()});
-            System.out.println("" + u.getNome());
+            //System.out.println("" + u.getNome());
         }
         jTable1.setModel(model);
     }

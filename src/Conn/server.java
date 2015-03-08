@@ -30,9 +30,9 @@ public class server extends UnicastRemoteObject implements ReceiveMessage{
     
     public void startCliente(){
         try {
-            System.out.println(""+login);
+            //System.out.println(""+login);
             obj = new server(); 
-            r = LocateRegistry.getRegistry();
+            //r = LocateRegistry.getRegistry();
             if(LocateRegistry.getRegistry() == null){
                 r = LocateRegistry.createRegistry(1099);
             }else{

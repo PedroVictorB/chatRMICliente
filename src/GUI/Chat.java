@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package GUI;
 
 import Entidades.UsuarioLogado;
@@ -13,23 +12,24 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import negocio.actions;
 
 /**
  *
  * @author Pedro
  */
-public class Chat extends javax.swing.JFrame implements Serializable{
-    
+public class Chat extends javax.swing.JFrame implements Serializable {
+
     private static Chat myInstance;
-    
+
     public static synchronized Chat getInstance() {
-        if (myInstance == null){
+        if (myInstance == null) {
             myInstance = new Chat();
-        } 
+        }
         return myInstance;
     }
-    
+
     public String texto = "";
     public String login = "";
     public String nome = "";
@@ -64,6 +64,7 @@ public class Chat extends javax.swing.JFrame implements Serializable{
             }
         });
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
@@ -110,14 +111,17 @@ public class Chat extends javax.swing.JFrame implements Serializable{
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         try {
-            new actions().enviarMensagem("[" + id + "] " + nome + " : "+jTextArea2.getText());
-            
+            new actions().enviarMensagem("[" + id + "] " + nome + " : " + jTextArea2.getText());
+            jTextArea2.setText("");
         } catch (NotBoundException ex) {
-            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Nome RMI não achado!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+            System.out.println(ex.getMessage());
         } catch (MalformedURLException ex) {
-            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "URL RMI errada!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+            System.out.println(ex.getMessage());
         } catch (RemoteException ex) {
-            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro na execução do método remoto!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+            System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -125,11 +129,14 @@ public class Chat extends javax.swing.JFrame implements Serializable{
         try {
             new actions().deslogar(login);
         } catch (NotBoundException ex) {
-            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Nome RMI não achado!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+            System.out.println(ex.getMessage());
         } catch (MalformedURLException ex) {
-            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "URL RMI errada!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+            System.out.println(ex.getMessage());
         } catch (RemoteException ex) {
-            Logger.getLogger(Chat.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Erro na execução do método remoto!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+            System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_formWindowClosing
 
@@ -176,9 +183,9 @@ public class Chat extends javax.swing.JFrame implements Serializable{
     private javax.swing.JTextArea jTextArea2;
     // End of variables declaration//GEN-END:variables
 
-    public void addTexto(String msg){
+    public void addTexto(String msg) {
         texto += msg + "\n";
         jTextArea1.setText(texto);
     }
-    
+
 }
