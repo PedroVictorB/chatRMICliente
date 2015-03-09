@@ -7,7 +7,7 @@
 package Conn;
 
 import Entidades.UsuarioLogado;
-import GUI.Chat;
+import GUI.ChatGrupo;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -20,7 +20,7 @@ import java.rmi.server.UnicastRemoteObject;
 public class server extends UnicastRemoteObject implements ReceiveMessage{
     server obj;
     Registry r;
-    Chat chat;
+    ChatGrupo chat;
     
     public String login = "";
     
@@ -30,9 +30,7 @@ public class server extends UnicastRemoteObject implements ReceiveMessage{
     
     public void startCliente(){
         try {
-            //System.out.println(""+login);
             obj = new server(); 
-            //r = LocateRegistry.getRegistry();
             if(LocateRegistry.getRegistry() == null){
                 r = LocateRegistry.createRegistry(1099);
             }else{
@@ -48,12 +46,12 @@ public class server extends UnicastRemoteObject implements ReceiveMessage{
 
     @Override
     public void mensagem(String msg) throws RemoteException {
-        chat = Chat.getInstance();
+        chat = ChatGrupo.getInstance();
         chat.addTexto(msg);
     }
     
     public void chatWindow(){
-        chat = Chat.getInstance();
+        chat = ChatGrupo.getInstance();
         chat.setVisible(true);
     }
 }

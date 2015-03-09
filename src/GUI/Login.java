@@ -157,7 +157,7 @@ public class Login extends javax.swing.JFrame {
                     System.out.println("LOGADO!");
                     Principal p = new Principal();
                     p.setVisible(true);
-                    p.setUsuario(new actions().buscarUsuario(login));
+                    p.setUsuario(new actions().buscarUsuarioByName(login));
                     this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "Login ou senha incorreto!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
@@ -192,7 +192,7 @@ public class Login extends javax.swing.JFrame {
                         System.out.println("LOGADO!");
                         Principal p = new Principal();
                         p.setVisible(true);
-                        p.setUsuario(new actions().buscarUsuario(login));
+                        p.setUsuario(new actions().buscarUsuarioByName(login));
                         this.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, "Login ou senha incorreto!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
@@ -224,7 +224,7 @@ public class Login extends javax.swing.JFrame {
                         System.out.println("LOGADO!");
                         Principal p = new Principal();
                         p.setVisible(true);
-                        p.setUsuario(new actions().buscarUsuario(login));
+                        p.setUsuario(new actions().buscarUsuarioByName(login));
                         this.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, "Login ou senha incorreto!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);

@@ -19,13 +19,13 @@ import negocio.actions;
  *
  * @author Pedro
  */
-public class Chat extends javax.swing.JFrame implements Serializable {
+public class ChatGrupo extends javax.swing.JFrame implements Serializable {
 
-    private static Chat myInstance;
+    private static ChatGrupo myInstance;
 
-    public static synchronized Chat getInstance() {
+    public static synchronized ChatGrupo getInstance() {
         if (myInstance == null) {
-            myInstance = new Chat();
+            myInstance = new ChatGrupo();
         }
         return myInstance;
     }
@@ -38,7 +38,7 @@ public class Chat extends javax.swing.JFrame implements Serializable {
     /**
      * Creates new form chat
      */
-    public Chat() {
+    private ChatGrupo() {
         initComponents();
     }
 
@@ -157,14 +157,15 @@ public class Chat extends javax.swing.JFrame implements Serializable {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChatGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChatGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChatGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Chat.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChatGrupo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

@@ -30,6 +30,7 @@ public class Principal extends javax.swing.JFrame {
 
     //private Timer timer = null;
     public UsuarioLogado usuario;
+    public ArrayList<ChatIndividual> lista = new ArrayList<>();
 
     /**
      * Creates new form Principal
@@ -55,11 +56,15 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+
+        jButton3.setText("jButton3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -111,6 +116,13 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText("teste");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,7 +136,8 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jButton2)
                         .addGap(124, 124, 124)
                         .addComponent(jButton1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton4)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -137,7 +150,8 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -152,7 +166,7 @@ public class Principal extends javax.swing.JFrame {
         try {
             server s = new server();
             s.chatWindow();
-            Chat c = Chat.getInstance();
+            ChatGrupo c = ChatGrupo.getInstance();
             c.login = usuario.getLogin();
             c.nome = usuario.getNome();
             c.id = usuario.getId();
@@ -177,6 +191,33 @@ public class Principal extends javax.swing.JFrame {
             System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_formWindowClosing
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        int linha = jTable1.getSelectedRow();
+        if (linha != -1) {
+
+            try {
+                UsuarioLogado l = new actions().buscarUsuarioById(Integer.parseInt(jTable1.getValueAt(linha, 0).toString()));
+                ChatIndividual c = new ChatIndividual();
+                c.id = usuario.getId();
+                c.login = usuario.getLogin();
+                c.nome = usuario.getNome();
+                c.toId = l.getId();
+                c.login = l.getLogin();
+                c.toNome = l.getNome();
+                lista.add(c);
+            } catch (NotBoundException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (RemoteException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um usuario da lista!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -217,6 +258,8 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;

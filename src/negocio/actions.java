@@ -56,9 +56,14 @@ public class actions {
         com.Deslogar(login); 
     }
     
-    public UsuarioLogado buscarUsuario(String login) throws NotBoundException, MalformedURLException, RemoteException{
+    public UsuarioLogado buscarUsuarioByName(String login) throws NotBoundException, MalformedURLException, RemoteException{
         com = (Comandos) Naming.lookup("//" + SERVER_IP + "/host");
-        return com.BuscarUsuario(login);
+        return com.buscarUsuarioByName(login);
+    }
+    
+    public UsuarioLogado buscarUsuarioById(int id) throws NotBoundException, MalformedURLException, RemoteException{
+        com = (Comandos) Naming.lookup("//" + SERVER_IP + "/host");
+        return com.buscarUsuarioById(id);
     }
     
 }
