@@ -155,7 +155,7 @@ public class Login extends javax.swing.JFrame {
             try {
                 if (new actions().login(login, senha)) {
                     System.out.println("LOGADO!");
-                    Principal p = new Principal();
+                    Principal p = Principal.getInstance();
                     p.setVisible(true);
                     p.setUsuario(new actions().buscarUsuarioByName(login));
                     this.dispose();
@@ -190,7 +190,7 @@ public class Login extends javax.swing.JFrame {
                 try {
                     if (new actions().login(login, senha)) {
                         System.out.println("LOGADO!");
-                        Principal p = new Principal();
+                        Principal p = Principal.getInstance();
                         p.setVisible(true);
                         p.setUsuario(new actions().buscarUsuarioByName(login));
                         this.dispose();
@@ -222,7 +222,7 @@ public class Login extends javax.swing.JFrame {
                 try {
                     if (new actions().login(login, senha)) {
                         System.out.println("LOGADO!");
-                        Principal p = new Principal();
+                        Principal p = Principal.getInstance();
                         p.setVisible(true);
                         p.setUsuario(new actions().buscarUsuarioByName(login));
                         this.dispose();

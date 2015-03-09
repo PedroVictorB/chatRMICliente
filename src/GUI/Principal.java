@@ -29,7 +29,7 @@ import negocio.actions;
 public class Principal extends javax.swing.JFrame {
 
     //private Timer timer = null;
-    public UsuarioLogado usuario;
+    public UsuarioLogado usuario = new UsuarioLogado();
     public ArrayList<ChatIndividual> lista = new ArrayList<>();
     
     private static Principal principal;
@@ -44,7 +44,7 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
-    public Principal() {
+    private Principal() {
         initComponents();
         atualizarTabela();
 //        timer = new Timer(3000, new ActionListener() {
@@ -206,13 +206,16 @@ public class Principal extends javax.swing.JFrame {
         if (linha != -1) {
 
             try {
+                System.out.println(""+jTable1.getValueAt(linha, 0).toString());
                 UsuarioLogado l = new actions().buscarUsuarioById(Integer.parseInt(jTable1.getValueAt(linha, 0).toString()));
                 ChatIndividual c = new ChatIndividual();
                 c.id = usuario.getId();
                 c.login = usuario.getLogin();
                 c.nome = usuario.getNome();
+                System.out.println("Usuario: "+usuario.getId()+" "+usuario.getLogin()+" "+usuario.getNome());
                 c.toId = l.getId();
-                c.login = l.getLogin();
+                System.out.println("Principal: "+l.getLogin()+"     "+l.getNome());
+                c.toLogin = l.getLogin();
                 c.toNome = l.getNome();
                 lista.add(c);
                 c.setVisible(true);

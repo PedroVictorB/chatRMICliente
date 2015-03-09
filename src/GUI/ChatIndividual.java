@@ -119,8 +119,10 @@ public class ChatIndividual extends javax.swing.JFrame implements Serializable {
             Mensagem m = new Mensagem();
             m.setFrom(this.login);
             m.setTo(this.toLogin);
+            System.out.println("From: "+login+"/ To: "+toLogin);
             m.setMensagem("[" + id + "] " + nome + " : " + jTextArea2.getText());
             new actions().enviarMensagemIndividual(m);
+            jTextArea1.setText("[" + id + "] " + nome + " : " + jTextArea2.getText());
             jTextArea2.setText("");
         } catch (NotBoundException ex) {
             JOptionPane.showMessageDialog(null, "Nome RMI não achado!", "Mensagem", JOptionPane.PLAIN_MESSAGE);

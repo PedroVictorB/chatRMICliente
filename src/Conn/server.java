@@ -62,6 +62,7 @@ public class server extends UnicastRemoteObject implements ReceiveMessage{
     @Override
     public void mensagemIndividual(Mensagem m) throws RemoteException {
         Principal p = Principal.getInstance();
+        UsuarioLogado usuario = p.usuario;
         boolean found = false;
         for(ChatIndividual l : p.lista){
             if(m.getTo().equals(l.toNome)){
@@ -71,13 +72,14 @@ public class server extends UnicastRemoteObject implements ReceiveMessage{
         }
         if(found == false){
             ChatIndividual c = new ChatIndividual();
-            c.id = p.usuario.getId();
-            c.login = p.usuario.getLogin();
-            c.nome = p.usuario.getNome();
+            c.id = usuario.getId();
+            c.login = usuario.getLogin();
+            c.nome = usuario.getNome();
             c.toLogin = m.getFrom();
             //c.toId
             p.lista.add(c);
             c.setVisible(true);
+            c.addTexto(m.getMensagem());
         }
     }
 }

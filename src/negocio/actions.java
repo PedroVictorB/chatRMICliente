@@ -26,7 +26,7 @@ import javax.swing.JTable;
  */
 public class actions {
     
-    private static final String SERVER_IP = "192.168.0.14";
+    private static final String SERVER_IP = "10.7.171.111";
     
     Comandos com;
     
