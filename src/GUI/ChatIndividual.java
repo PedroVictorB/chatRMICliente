@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Entidades.Mensagem;
 import Entidades.UsuarioLogado;
 import java.io.Serializable;
 import java.net.MalformedURLException;
@@ -115,7 +116,11 @@ public class ChatIndividual extends javax.swing.JFrame implements Serializable {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         try {
-            new actions().enviarMensagem("[" + id + "] " + nome + " : " + jTextArea2.getText());
+            Mensagem m = new Mensagem();
+            m.setFrom(this.login);
+            m.setTo(this.toLogin);
+            m.setMensagem("[" + id + "] " + nome + " : " + jTextArea2.getText());
+            new actions().enviarMensagemIndividual(m);
             jTextArea2.setText("");
         } catch (NotBoundException ex) {
             JOptionPane.showMessageDialog(null, "Nome RMI não achado!", "Mensagem", JOptionPane.PLAIN_MESSAGE);

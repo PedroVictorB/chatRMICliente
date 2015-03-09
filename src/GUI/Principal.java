@@ -31,6 +31,15 @@ public class Principal extends javax.swing.JFrame {
     //private Timer timer = null;
     public UsuarioLogado usuario;
     public ArrayList<ChatIndividual> lista = new ArrayList<>();
+    
+    private static Principal principal;
+    
+    public static synchronized Principal getInstance(){
+        if(principal == null){
+            return new Principal();
+        }
+        return principal;
+    }
 
     /**
      * Creates new form Principal
@@ -165,7 +174,7 @@ public class Principal extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         try {
             server s = new server();
-            s.chatWindow();
+            s.chatGrupoWindow();
             ChatGrupo c = ChatGrupo.getInstance();
             c.login = usuario.getLogin();
             c.nome = usuario.getNome();
@@ -206,6 +215,7 @@ public class Principal extends javax.swing.JFrame {
                 c.login = l.getLogin();
                 c.toNome = l.getNome();
                 lista.add(c);
+                c.setVisible(true);
             } catch (NotBoundException ex) {
                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             } catch (MalformedURLException ex) {

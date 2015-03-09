@@ -160,7 +160,7 @@ public class Login extends javax.swing.JFrame {
                     p.setUsuario(new actions().buscarUsuarioByName(login));
                     this.dispose();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Login ou senha incorreto!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Login ou senha incorreto ou usuário já está logado no sistema!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
                 }
             } catch (NotBoundException ex) {
                 JOptionPane.showMessageDialog(null, "Nome RMI não achado!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
@@ -195,7 +195,7 @@ public class Login extends javax.swing.JFrame {
                         p.setUsuario(new actions().buscarUsuarioByName(login));
                         this.dispose();
                     } else {
-                        JOptionPane.showMessageDialog(null, "Login ou senha incorreto!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Login ou senha incorreto ou usuário já está logado no sistema!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
                     }
                 } catch (NotBoundException ex) {
                     JOptionPane.showMessageDialog(null, "Nome RMI não achado!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
@@ -227,7 +227,7 @@ public class Login extends javax.swing.JFrame {
                         p.setUsuario(new actions().buscarUsuarioByName(login));
                         this.dispose();
                     } else {
-                        JOptionPane.showMessageDialog(null, "Login ou senha incorreto!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Login ou senha incorreto ou usuário já está logado no sistema!!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
                     }
                 } catch (NotBoundException ex) {
                     JOptionPane.showMessageDialog(null, "Nome RMI não achado!", "Mensagem", JOptionPane.PLAIN_MESSAGE);

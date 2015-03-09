@@ -9,6 +9,7 @@ package negocio;
 import Conn.Comandos;
 import Entidades.UsuarioLogado;
 import Entidades.ListaUsuariosLogados;
+import Entidades.Mensagem;
 import GUI.Cadastro;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -46,9 +47,14 @@ public class actions {
             return u.lista;
     }
     
-    public void enviarMensagem(String msg) throws NotBoundException, MalformedURLException, RemoteException{
+    public void enviarMensagemGrupo(String msg) throws NotBoundException, MalformedURLException, RemoteException{
         com = (Comandos) Naming.lookup("//" + SERVER_IP + "/host");
-        com.SendMessage(msg);
+        com.SendMessageGrupo(msg);
+    }
+    
+    public void enviarMensagemIndividual(Mensagem m) throws NotBoundException, MalformedURLException, RemoteException{
+        com = (Comandos) Naming.lookup("//" + SERVER_IP + "/host");
+        com.SendMessageIndividual(m);
     }
     
     public void deslogar(String login) throws NotBoundException, MalformedURLException, RemoteException{

@@ -6,8 +6,11 @@
 
 package Conn;
 
+import Entidades.Mensagem;
 import Entidades.UsuarioLogado;
 import GUI.ChatGrupo;
+import GUI.ChatIndividual;
+import GUI.Principal;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -20,7 +23,8 @@ import java.rmi.server.UnicastRemoteObject;
 public class server extends UnicastRemoteObject implements ReceiveMessage{
     server obj;
     Registry r;
-    ChatGrupo chat;
+    ChatGrupo chatg;
+    ChatIndividual chati;
     
     public String login = "";
     
@@ -45,13 +49,35 @@ public class server extends UnicastRemoteObject implements ReceiveMessage{
     }
 
     @Override
-    public void mensagem(String msg) throws RemoteException {
-        chat = ChatGrupo.getInstance();
-        chat.addTexto(msg);
+    public void mensagemGrupo(String msg) throws RemoteException {
+        chatg = ChatGrupo.getInstance();
+        chatg.addTexto(msg);
     }
     
-    public void chatWindow(){
-        chat = ChatGrupo.getInstance();
-        chat.setVisible(true);
+    public void chatGrupoWindow(){
+        chatg = ChatGrupo.getInstance();
+        chatg.setVisible(true);
+    }
+
+    @Override
+    public void mensagemIndividual(Mensagem m) throws RemoteException {
+        Principal p = Principal.getInstance();
+        boolean found = false;
+        for(ChatIndividual l : p.lista){
+            if(m.getTo().equals(l.toNome)){
+                l.addTexto(m.getMensagem());
+                found = true;
+            }
+        }
+        if(found == false){
+            ChatIndividual c = new ChatIndividual();
+            c.id = p.usuario.getId();
+            c.login = p.usuario.getLogin();
+            c.nome = p.usuario.getNome();
+            c.toLogin = m.getFrom();
+            //c.toId
+            p.lista.add(c);
+            c.setVisible(true);
+        }
     }
 }

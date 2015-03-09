@@ -111,7 +111,7 @@ public class ChatGrupo extends javax.swing.JFrame implements Serializable {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         try {
-            new actions().enviarMensagem("[" + id + "] " + nome + " : " + jTextArea2.getText());
+            new actions().enviarMensagemGrupo("[" + id + "] " + nome + " : " + jTextArea2.getText());
             jTextArea2.setText("");
         } catch (NotBoundException ex) {
             JOptionPane.showMessageDialog(null, "Nome RMI não achado!", "Mensagem", JOptionPane.PLAIN_MESSAGE);
